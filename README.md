@@ -1,3 +1,3 @@
 #### Imágenes
 
-[![Captura-de-pantalla-2022-09-07-123731.jpg](https://i.postimg.cc/nrGc4HYw/Captura-de-pantalla-2022-09-07-123731.jpg)](https://postimg.cc/kRDm9PHx)
+[![Captura-de-pantalla-2022-09-07-124752.jpg](https://i.postimg.cc/cLX019Xw/Captura-de-pantalla-2022-09-07-124752.jpg)](https://postimg.cc/JsD9Pqwz)
