@@ -33,6 +33,10 @@ String myString = "Hola mundo";
 String myString2;
 
 
+// Variable uint8_t
+uint8_t my_uint_8 = 12;
+
+
 void setup() {
   myByte2 = 117;
   Serial.begin(9600);
@@ -41,5 +45,10 @@ void setup() {
 void loop() {
   Serial.print("Byte : ");
   Serial.println(myByte2);
+  Serial.print("Espacio de memoria de varible int : ");
+  Serial.println(sizeof(myInt));
+  Serial.print("Espacio de memoria de varible uint8_t : ");
+  Serial.println(sizeof(my_uint_8));
+
   delay(2000);
 }
