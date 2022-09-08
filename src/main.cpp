@@ -1,63 +1,63 @@
 #include <Arduino.h>
 
-bool a, b;    // Declaración de variables de tipo bool.
-int c, d;     // Declaración de variables de tipo enteras.
+/* Declaracion de variables */
+bool a = true, b = true;
+int c = 0, d = 10;
+String msg = "Electronica";
 
 void setup() {
-  Serial.begin(9600);                     // Inicialización de comunicación serial.
+  Serial.begin(9600);                         // Inicialización de comunicación serial.
 
-  a = true;                               // Asignación de valor a la variable a.
-  b = false;                              // Asignación de valor a la variable b.
+/********************* Sintaxis del If ********************/
+/*                   if( (Condicion) ){                   */
+/*                     Bloque de codigo                   */
+/*                   }                                    */
+/*                                                        */
+/**********************************************************/
 
-  Serial.print("valor de A: ");           // Envió de cadena de caracteres.       
-  Serial.println(a);                      // Envió del valor de la variable a con salto de linea.
+  if((a==b) || (!a==!b)){                     // Pregunta si las dos condicionales son verdaderas.
+    Serial.println("A es igual a B");         // Si es verdad se ejecuta esta linea.
+  }else{    
+    Serial.println("A es diferente de B");    // Si es falso se ejecuta esta linea.
+  }
 
-  Serial.print("Valor de B: ");           // Envió de cadena de caracteres. 
-  Serial.println(b);                      // Envió del valor de la variable b con salto de linea.
+  if(c<d){                                    // Pregunta si la variable C es menor que la variable D.
+    Serial.println("C es menor que D");       // Si es verdadero se ejecuta esta linea.
+  }else if(c==d){                             // Sino, pregunta si la variable C es igual a D.
+    Serial.println("C es igual a D");         // Si lo anterior es verdad se ejecuta esta linea.
+  }else {
+    Serial.println("C es mayor que D");       // Sino se ejecuta esta linea de codigo.
+  }
 
-  Serial.print("Valor negado de A: ");    // Envió de cadena de caracteres. 
-  Serial.println(!a);                     // Envió del valor negado de a con salto de linea.
-  Serial.print("Valor negado de B: ");    // Envió de cadena de caracteres. 
-  Serial.println(!b);                     // Envió del valor negado de b con salto de linea.
 
-  Serial.print("A && B: ");               // Envió de cadena de caracteres. 
-  Serial.println(a && b);                 // Envió del resultado de la operacion logica AND de a con b con salto de linea.
+  if(msg.equals("Electronica")){              // Pregunta si la cadena de caracteres almacenada en msg es igual a "Electronica"
+    Serial.println("Contraseña correcta");    // Si es verdad se ejecuta esta linea.
+  }else{
+    Serial.println("No, no, no, esa no es");  // Sino se ejecuta esta otra linea.
+  }
 
-  Serial.print("A || B: ");               // Envió de cadena de caracteres. 
-  Serial.println(a || b);                 // Envió del resultado de la operacion logica OR de a con b con salto de linea.
+  /* 
+  pregunta si c es menor que d, 
+  si es VERDADERO el valor almacenado en msg es el que este a la izquierda de los dos puntos, 
+  si es FALSO almacena el valor que este a la derecha de los dos puntos. 
+  */
+  msg = (c<d)?"C es menor que D":"C es mayor que D";  
+  Serial.println(msg);                        // Envió del valor de la variable msg al puerto serial.
 
-  c = 5;                                  // Asignación del varlo 5 a la variable c.
-  d = 5;                                  // Asignación del valor 5 a la variable d.
-
-  Serial.print("C es igual a D: ");       // Envió de cadena de caracteres. 
-  Serial.println(c == d);                 // Envió del resultado de la pregunta ¿c es igual a d?.
-
-  /************************     NOTA    ******************************/
-  /*                                                                 */
-  /*        c == d                              c = d                */
-  /*          ^                                   ^                  */ 
-  /*  Esto es una pregunta.              Esto es una asignación.     */
-  /*    ¿c es igual a d?.              El valor de d se guarda en c. */ 
-  /*                                                                 */
-  /*******************************************************************/
-
-  Serial.print("C es diferente de D: ");        // Envió de cadena de caracteres. 
-  Serial.println(c != d);                       // Envió del resultado de la pregunta ¿c es diferente de d?.
-
-  Serial.print("C es menor que D: ");           // Envió de cadena de caracteres. 
-  Serial.println(c < d);                        // Envió del resultado de la pregunta ¿c es menor que d?.
-
-  Serial.print("C es mayor que D: ");           // Envió de cadena de caracteres. 
-  Serial.println(c > d);                        // Envió del resultado de la pregunta ¿c es mayor que d? .
-
-  Serial.print("C es menor o igual que D: ");   // Envió de cadena de caracteres. 
-  Serial.println(c <= d);                       // Envio del resultado de la pregunta ¿c es menor o igual a d?.
-
-  Serial.print("C es mayor o igual que D: ");   // Envió de cadena de caracteres. 
-  Serial.println(c >= d);                       // Envio del resultado de la pregunta ¿c es mayor o igual a d?.
 
 }
 
 void loop() {
-    // Todo se ejecuta en el Setup para verlo una sola vez.
+  /* Si el valor de c es mayor a 7, le asignamos el valor de 0. */
+  /*
+  if(c>7){
+    c = 0;
+  }
+  */
+
+  c = c>7?0:c;                                // Equivalente al if anterior.
+  Serial.print("Valor del contador: ");       // Envió de cadena de caracteres.
+  Serial.println(c);                          // Envió de la variable C.
+  c++;                                        // Incremento de la variab le C en 1.
+  delay(500);                                 // Espera 1/2 segundo en esta linea.
 }
