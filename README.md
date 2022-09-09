@@ -1,3 +1,3 @@
 #### Prototype and simulation
 
-[![Captura-de-pantalla-2022-09-08-191411.jpg](https://i.postimg.cc/13kbMcZ7/Captura-de-pantalla-2022-09-08-191411.jpg)](https://postimg.cc/G4jMmDtv)
+[![Captura-de-pantalla-2022-09-09-105359.jpg](https://i.postimg.cc/rFMQmVWz/Captura-de-pantalla-2022-09-09-105359.jpg)](https://postimg.cc/6TbdbNMN)

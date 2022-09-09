@@ -1,61 +1,44 @@
 #include <Arduino.h>
 
-// Declaraciones de variables.
-int i;
+#define PinADC 34
+#define Resolucion 3.3/4095     // Resolucion de ADC de 12bits - 4096 combinaciones 
+//#define Resolucion 3.3/2047   // Resolucion de ADC de 11bits - 2048 combinaciones
+//#define Resolucion 3.3/1023   // Resolucion de ADC de 10bits - 1024 combinaciones
+//#define Resolucion 3.3/511    // Resolucion de ADC de 9bits - 512 combinaciones
+
+int rADC = 0;
+// int voltaje = 0;
 
 void setup() {
-  Serial.begin(9600); // Configuración del puerto serial.
+  Serial.begin(9600);
 
-  Serial.println("Ciclo for"); // Envio de cadena de caracteres.
-  
-  // Comienzo del ciclo for.
-  /*************************************************************/
-  /*      La variable i comienza a contar desde 0              */
-  /*      hasta que la condicion sea falsa con un              */
-  /*      incremento de 1 en cada iteracion, se                */
-  /*      realizan todas las instrucciones entre llaves.       */
-  /*************************************************************/
-  for(i=0; i<7; i++){
-    Serial.print("Itereacion numero ");
-    Serial.println(i);
-  }
+  analogReadResolution(12); // Resolucion del ADC, Puede tomar valores del 9 al 12
+  //analogSetAttenuation(ADC_11db); // Atenuacion del ADC, puede tomar valores ADC_0db, ADC_2_5db, ADC_6db, ADC_11db
+  analogSetPinAttenuation(PinADC, ADC_11db);
 
-  Serial.println("");
-  Serial.println("Ciclo while");
+  /***************************************
+   * La atenuación de 0 dB (ADC_0db) proporciona un voltaje de escala completa de 1,1 V
+   * La atenuación de 2,5 dB (ADC_2_5db) proporciona un voltaje de escala completa de 1,5 V
+   * La atenuación de 6 dB (ADC_6db) proporciona un voltaje de escala completa de 2,2 V
+   * La atenuación de 11 dB (ADC_11db) proporciona un voltaje de escala completa de 3,9 V (Nota)
+   * 
+   * A una atenuación de 11 dB, el voltaje máximo está limitado por VDDA, no por el voltaje de escala completa.
+   **************************************/
 
-/**************************************************************/
-/*        Primero verifica si la condición es                 */
-/*        verdadera y mientras lo sea, ejecutara todo         */
-/*        lo que esta entre llaves hasta que la condición     */
-/*        sea falsa.                                          */
-/**************************************************************/
-  while(i>0){
-    Serial.print("Itereacion numero ");
-    Serial.println(i);
-    i--;
-  }
 
-  Serial.println("");
-  Serial.println("Ciclo do while");
+  //https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/adc.html
 
-/**************************************************************/
-/*        Primero realiza entre llaves y después              */
-/*        verifica si la condición es verdadera y             */
-/*        mientras lo sea, ejecutara todo de nuevo lo         */
-/*        que esta entre llaves hasta que la condición        */
-/*        sea falsa.                                          */
-/**************************************************************/
-
-  do{
-    Serial.print("Itereacion numero ");
-    Serial.println(i);
-  } while(i==1);
-  
-  Serial.println("");
-  Serial.println("Fin del programa.");
-  
 }
 
 void loop() {
   
+  rADC = analogRead(PinADC);
+
+  Serial.print("Valor: ");
+  Serial.print(rADC);
+  Serial.print(" --> ");
+  Serial.print("Voltaje: ");
+  Serial.println(rADC*Resolucion,2);
+  
+  delay(500);
 }
