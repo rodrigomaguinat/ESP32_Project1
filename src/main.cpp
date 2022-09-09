@@ -1,46 +1,61 @@
 #include <Arduino.h>
 
-// Declaracion de variables
-String msg;
-int dia = 2;
+// Declaraciones de variables.
+int i;
 
-// Configuraciones iniciales
-void setup(){
-  Serial.begin(9600);   // Configuracion de la comunicacion serial
-  delay(5000);
+void setup() {
+  Serial.begin(9600); // Configuración del puerto serial.
 
-  // Selector; verifica cual de los casos es igual a la variable
-  switch(dia){
-    case 1:             // Instrucciones del caso 1, termina hasta encontrar la palabra (break)
-      msg = "Lunes ";   // Puede ser mas de una instruccion
-      // ...            
-      break;            // Final del caso 1
-    case 2:
-      msg = "Martes ";
-      break;
-    case 3:
-      msg = "Miercoles ";
-      break;
-    case 4:
-      msg = "Jueves ";
-      break;
-    case 5:
-      msg = "Viernes ";
-      break;
-    case 6:
-      msg = "Sabado ";
-      break;
-    case 7:
-      msg = "Domingo ";
-      break;
-    default:
-      msg = "No existe ese dia";
-      break;
+  Serial.println("Ciclo for"); // Envio de cadena de caracteres.
+  
+  // Comienzo del ciclo for.
+  /*************************************************************/
+  /*      La variable i comienza a contar desde 0              */
+  /*      hasta que la condicion sea falsa con un              */
+  /*      incremento de 1 en cada iteracion, se                */
+  /*      realizan todas las instrucciones entre llaves.       */
+  /*************************************************************/
+  for(i=0; i<7; i++){
+    Serial.print("Itereacion numero ");
+    Serial.println(i);
   }
+
+  Serial.println("");
+  Serial.println("Ciclo while");
+
+/**************************************************************/
+/*        Primero verifica si la condición es                 */
+/*        verdadera y mientras lo sea, ejecutara todo         */
+/*        lo que esta entre llaves hasta que la condición     */
+/*        sea falsa.                                          */
+/**************************************************************/
+  while(i>0){
+    Serial.print("Itereacion numero ");
+    Serial.println(i);
+    i--;
+  }
+
+  Serial.println("");
+  Serial.println("Ciclo do while");
+
+/**************************************************************/
+/*        Primero realiza entre llaves y después              */
+/*        verifica si la condición es verdadera y             */
+/*        mientras lo sea, ejecutara todo de nuevo lo         */
+/*        que esta entre llaves hasta que la condición        */
+/*        sea falsa.                                          */
+/**************************************************************/
+
+  do{
+    Serial.print("Itereacion numero ");
+    Serial.println(i);
+  } while(i==1);
+  
+  Serial.println("");
+  Serial.println("Fin del programa.");
+  
 }
 
-void loop(){
-  Serial.print("El dia es : ");
-  Serial.println(msg);  // Envio de cadena de caracteres
-  delay(2000);
+void loop() {
+  
 }
