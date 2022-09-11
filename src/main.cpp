@@ -14,6 +14,7 @@ double j = 0;
 #define Salida 25
 
 #define PinADC 34
+#define PinDAC 26
 #define Resolucion 3.3/4095   // Resolucion de ADC de 12 bits - 4096 combinaciones
 
 int rADC = 0;
@@ -30,7 +31,7 @@ void setup() {
 void loop() {
 
   /* Nivel de CD */
-  dacWrite(26, 255);  // Establecer un voltaje en la terminal 26.
+  dacWrite(PinDAC, 255);  // Establecer un voltaje en la terminal 26.
 
   rADC = analogRead(PinADC);
 
@@ -43,5 +44,6 @@ void loop() {
    /* Señal senoidal */
  for(j = 0; j<360; j+=0.00120){
    dacWrite(Salida, A * sin(2*PI*f*(j*PI/180)) + B);
+   Serial.println(A * sin(2*PI*f*(j*PI/180)) + B);
  }
 } 
