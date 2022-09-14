@@ -4,9 +4,10 @@
 
 volatile bool toggle = true;
 void IRAM_ATTR onTimer();   // Declarar la función de interrupción
+void IRAM_ATTR onTimer1();
 
 hw_timer_t *timer0 = NULL;   // Declarar un apuntador de tipo hw_timer_t
-
+hw_timer_t *timer1 = NULL;
 
 void setup() {
 
@@ -16,6 +17,7 @@ void setup() {
   // Activando algo, puede ser un LED, motor, etc
 
   timer0 = timerBegin(0, 80, true);                // Inicializamos el timer
+  timer1 = timerBegin(0, 80, true);
   /*******************************
    * 1.- El primer parámetro es el timer que vamos a utilizar, puede tomar valores de 0 a 3 (hay 4 Timer), todos los timer son de 64 bits
    * 2.- El segundo parámetro es el valor del preescaler, el prescaler es de 16 bits lo cual puede tomar valores de 0 a 65536 ('onTimer' es el nombre de mi Función de Interrupción)
@@ -23,13 +25,15 @@ void setup() {
    ******************************/
 
   timerAttachInterrupt(timer0, &onTimer, true);    // Indicamos que función de interrupción se ejecutara.
+  timerAttachInterrupt(timer1, &onTimer1, true);
   /********************************
    * 1.- El primer parámetro es el apuntador '*timer0'
    * 2.- El segundo parámetro es la dirección de memoria de la función de interrupción que se ejecutara.
    * 3.- El tercer parámetro indica si la interrupción a generar es de flanco o de nivel, toma valores booleanos, true y false respectivamente.
    ********************************/
 
-  timerAlarmWrite(timer0, 10000, true);          // Establecer el limite del contador
+  timerAlarmWrite(timer0, 1000, true);          // Establecer el limite del contador
+  timerAlarmWrite(timer1, 1000, true); 
   /********************************
    * 1.- El primer parámetro es el apuntador *timer0.
    * 2.- El segundo parámetro es el valor al que tiene que llegar el contador para ejecutar la función de interrupción. 
@@ -57,4 +61,8 @@ void IRAM_ATTR onTimer() {
   //toggle =toggle xor true
   
   // cada 1 seg cambia el valor del toggle
+}
+
+void IRAM_ATTR onTimer1(){
+  toggle ^= true; 
 }
